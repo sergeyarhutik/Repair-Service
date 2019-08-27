@@ -16,6 +16,8 @@
         <module>web-app</module>
         <module>model</module>
         <module>service</module>
+        <module>dao</module>
+        <module>test-db</module>
     </modules>
 
     <distributionManagement>
@@ -67,6 +69,16 @@
             <dependency>
                 <groupId>com.epam.brest.summer.courses2019</groupId>
                 <artifactId>service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.epam.brest.summer.courses2019</groupId>
+                <artifactId>dao</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.epam.brest.summer.courses2019</groupId>
+                <artifactId>test-db</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
