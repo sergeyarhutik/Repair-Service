@@ -24,6 +24,19 @@ public class ClientController {
     private ClientService clientService;
 
 
+    /**
+     * Goto departments list page.
+     *
+     * @param model model
+     * @return view name
+     */
+    @GetMapping(value = "/clients")
+    public final String clients(Model model) {
+
+        LOGGER.debug("findAll({})", model);
+        model.addAttribute("clients", clientService.findAll());
+        return "clients";
+    }
 
     /**
      * Goto edit client page.

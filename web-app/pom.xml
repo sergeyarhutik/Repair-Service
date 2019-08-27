@@ -6,6 +6,7 @@
 
     <groupId>com.epam.brest.summer.courses2019</groupId>
     <artifactId>web-app</artifactId>
+    <packaging>war</packaging>
 
     <parent>
         <groupId>com.epam.brest.summer.courses2019</groupId>
@@ -70,5 +71,16 @@
             <artifactId>spring-test</artifactId>
         </dependency>
     </dependencies>
+
+    <build>
+
+        <plugins>
+            <!-- Embedded Jetty HTTP Server for testing web application -->
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
