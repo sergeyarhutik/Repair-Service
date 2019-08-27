@@ -14,6 +14,8 @@
 
     <modules>
         <module>web-app</module>
+        <module>model</module>
+        <module>service</module>
     </modules>
 
     <distributionManagement>
@@ -57,6 +59,16 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.epam.brest.summer.courses2019</groupId>
+                <artifactId>model</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.epam.brest.summer.courses2019</groupId>
+                <artifactId>service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context</artifactId>
