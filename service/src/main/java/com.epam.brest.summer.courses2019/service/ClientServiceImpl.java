@@ -1,37 +1,52 @@
 package com.epam.brest.summer.courses2019.service;
 
+import com.epam.brest.summer.courses2019.dao.ClientDao;
 import com.epam.brest.summer.courses2019.model.Client;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Component
+@Transactional
 public class ClientServiceImpl implements ClientService {
+
+    private ClientDao clientDao;
+
+    public ClientServiceImpl(ClientDao clientDao) {
+        this.clientDao = clientDao;
+    }
+
     @Override
     public List<Client> findAll() {
-        return null;
+        return clientDao.findAll();
     }
 
     @Override
     public Client findById(Integer id) {
-        return null;
+        return clientDao.findById(id)
+                .orElseThrow(() -> new RuntimeException("Failed to get client from DB"));
     }
 
     @Override
     public void update(Client client) {
-
+    clientDao.update(client);
     }
 
     @Override
     public void delete(int id) {
-
+    clientDao.delete(id);
     }
 
     @Override
     public void add(Client... clients) {
-
+        for (Client client : clients) {
+            clientDao.add(client);
+        }
     }
 
     @Override
     public Client add(Client client) {
-        return null;
+        return clientDao.add(client);
     }
 }
