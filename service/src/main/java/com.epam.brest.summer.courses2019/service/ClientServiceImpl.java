@@ -2,6 +2,7 @@ package com.epam.brest.summer.courses2019.service;
 
 import com.epam.brest.summer.courses2019.dao.ClientDao;
 import com.epam.brest.summer.courses2019.model.Client;
+import com.epam.brest.summer.courses2019.model.stub.ClientStub;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +16,11 @@ public class ClientServiceImpl implements ClientService {
 
     public ClientServiceImpl(ClientDao clientDao) {
         this.clientDao = clientDao;
+    }
+
+    @Override
+    public List<ClientStub> findAllClientsWithDevices() {
+        return null;
     }
 
     @Override

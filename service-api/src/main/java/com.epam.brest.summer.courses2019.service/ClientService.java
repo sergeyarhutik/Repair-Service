@@ -1,9 +1,13 @@
 package com.epam.brest.summer.courses2019.service;
 
 import com.epam.brest.summer.courses2019.model.Client;
+import com.epam.brest.summer.courses2019.model.stub.ClientStub;
+
 import java.util.List;
 
 public interface ClientService {
+
+    List<ClientStub> findAllClientsWithDevices();
 
     List<Client> findAll();
 

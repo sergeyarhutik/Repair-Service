@@ -20,6 +20,7 @@
         <module>dao</module>
         <module>dao-api</module>
         <module>test-db</module>
+        <module>rest-app</module>
     </modules>
 
     <distributionManagement>

@@ -1,6 +1,7 @@
 package com.epam.brest.summer.courses2019.web_app.consumers;
 
 import com.epam.brest.summer.courses2019.model.Client;
+import com.epam.brest.summer.courses2019.model.stub.ClientStub;
 import com.epam.brest.summer.courses2019.service.ClientService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
@@ -16,6 +17,12 @@ public class ClientRestConsumer implements ClientService {
     public ClientRestConsumer(String url, RestTemplate restTemplate) {
         this.url = url;
         this.restTemplate = restTemplate;
+    }
+
+    @Override
+    public List<ClientStub> findAllClientsWithDevices() {
+        ResponseEntity responseEntity = restTemplate.getForEntity(url + "/with_devices", List.class);
+        return (List<ClientStub>) responseEntity.getBody();
     }
 
     @Override

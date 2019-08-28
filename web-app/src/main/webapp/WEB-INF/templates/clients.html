@@ -61,8 +61,10 @@
                         </tr>
                         </thead>
                         <tbody>
+
                         <tr th:each="client : ${clients}">
                             <td th:text="${client.clientName}">Иванов Иван Иванович</td>
+                            <!--TODO quantityOfClientDevices-->
                             <td>3</td>
                             <td class="text-right">
                                 <a href="client.html"
