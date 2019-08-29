@@ -1,17 +1,20 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="../../resources/static/css/bootstrap.css"
+                            th:href="@{/resources/static/css/bootstrap.css}">
+    <link rel="stylesheet" href="../../resources/static/css/style.css"
+                            th:href="@{/resources/static/css/style.css}">
+    <link rel="stylesheet" href="../../resources/static/css/all.css"
+                            th:href="@{/resources/static/css/all.css}">
+    <link rel="stylesheet" href="../../resources/static/css/daterangepicker.css"
+                            th:href="@{/resources/static/css/daterangepicker.css}">
+    <link rel="stylesheet" href="../../resources/static/css/font-awesome.min.css"
+                            th:href="@{/resources/static/css/font-awesome.min.css}">
 
-    <link rel="stylesheet" href="../../resources/static/css/bootstrap.css" th:href="@{/resources/static/css/bootstrap.css}">
-    <link rel="stylesheet" href="../../resources/static/css/style.css" th:href="@{/resources/static/css/style.css}">
-    <link rel="stylesheet" href="../../resources/static/css/all.css" th:href="@{/resources/static/css/all.css}">
-    <link rel="stylesheet" href="../../resources/static/css/daterangepicker.css" th:href="@{/resources/static/css/daterangepicker.css}">
-    <link rel="stylesheet" href="../../resources/static/css/font-awesome.min.css" th:href="@{/resources/static/css/font-awesome.min.css}">
-
-    <title>Repair Service</title>
+    <title>Clients List</title>
 </head>
 <body>
 <header>
@@ -19,15 +22,18 @@
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="navbar-brand" href="clients.html">
-                    <img src="../../resources/static/img/logo_main.svg" th:src="@{/resources/static/img/logo_main.svg}" height="32" width="32">
+                <a class="navbar-brand">
+                    <img src="../../resources/static/img/logo_main.svg"
+                         th:src="@{/resources/static/img/logo_main.svg}"
+                         height="32" width="32">
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active nav-link" href="clients.html" th:href="@{/clients}">Clients</a>
+                <a class="nav-link active nav-link" href="clients.html"
+                   th:href="@{/clients}">Clients</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="devices.html" th:href="@{/devices}">Devices</a>
+                <a class="nav-link" href="devices.html">Devices</a>
             </li>
         </ul>
     </nav>
@@ -35,7 +41,8 @@
         <span class="navbar-brand text-uppercase mr-auto">Clients</span>
         <ul class="navbar-nav float-right">
             <li class="nav-item">
-                <a href="client.html" th:href="@{/client}">
+                <a href="client.html"
+                   th:href="@{/client}">
                     <button type="button" class="btn btn-primary">
                         <i class="fa fa-plus"></i>
                         <span class="d-none d-sm-inline">&nbsp;&nbsp;Add new client</span>
@@ -65,16 +72,18 @@
                         <tr th:each="client : ${clients}">
                             <td th:text="${client.clientName}">Иванов Иван Иванович</td>
                             <!--TODO quantityOfClientDevices-->
-                            <td>3</td>
+                            <td th:text="${client.findAllClientsWithDevices}">3</td>
                             <td class="text-right">
                                 <a href="client.html"
+                                   th:href="@{|/client/${client.clientID}|}"
                                    class="btn-sm btn-outline-secondary"
                                    title="Edit client"
                                    data-toggle="tooltip"
                                    data-placement="top">
                                     <i class="fa fa-pencil"></i> <span
                                         class="d-none d-md-inline">Edit</span></a>
-                                <span data-toggle="modal" data-target="#deleteDialog">
+                                <span data-toggle="modal" data-target="#deleteDialog"
+                                      th:attr="data-id=${client.clientId},data-name=${client.clientName}">
                                 <a href="#" class="btn-sm btn-outline-secondary"
                                    title="delete client"
                                    data-toggle="tooltip"
@@ -83,7 +92,7 @@
                                 </span>
                             </td>
                         </tr>
-                        <tr>
+                        <tr th:remove="all">
                             <td>Петров Петр Петрович</td>
                             <td>1</td>
                             <td class="text-right">
@@ -103,7 +112,7 @@
                                 </span>
                             </td>
                         </tr>
-                        <tr>
+                        <tr th:remove="all">
                             <td>Сидоров Петр Иванович</td>
                             <td>4</td>
                             <td class="text-right">
@@ -123,7 +132,7 @@
                                 </span>
                             </td>
                         </tr>
-                        <tr>
+                        <tr th:remove="all">
                             <td>Петров Иван Сидорович</td>
                             <td>2</td>
                             <td class="text-right">
@@ -181,7 +190,20 @@
 </div>
 
 
-<script src="../../resources/static/js/jquery-3.3.1.slim.js"></script>
-<script src="../../resources/static/js/bootstrap.min.js"></script>
+<script src="../../resources/static/js/jquery-3.3.1.slim.js"
+        th:src="@{/resources/static/js/jquery-3.3.1.slim.js}"></script>
+<script src="../../resources/static/js/bootstrap.min.js"
+        th:src="@{/resources/static/js/bootstrap.min.js}"></script>
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+    $('#deleteDialog').on('show.bs.modal', function (event) {
+        var target = $(event.relatedTarget)
+        $(this).find('.modal-body').text('Please confirm delete client: "' + target.data('name') + '"')
+        document.getElementById('deleteUrl').href = '/client/' + target.data('id') + '/delete';
+    })
+</script>
 </body>
 </html>

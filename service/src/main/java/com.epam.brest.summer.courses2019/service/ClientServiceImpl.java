@@ -1,6 +1,7 @@
 package com.epam.brest.summer.courses2019.service;
 
 import com.epam.brest.summer.courses2019.dao.ClientDao;
+import com.epam.brest.summer.courses2019.dao.ClientStubDao;
 import com.epam.brest.summer.courses2019.model.Client;
 import com.epam.brest.summer.courses2019.model.stub.ClientStub;
 import org.springframework.stereotype.Component;
@@ -12,15 +13,18 @@ import java.util.List;
 @Transactional
 public class ClientServiceImpl implements ClientService {
 
+    private final ClientStubDao clientStubDao;
+
     private ClientDao clientDao;
 
-    public ClientServiceImpl(ClientDao clientDao) {
+    public ClientServiceImpl(ClientDao clientDao, ClientStubDao clientStubDao) {
         this.clientDao = clientDao;
+        this.clientStubDao = clientStubDao;
     }
 
     @Override
     public List<ClientStub> findAllClientsWithDevices() {
-        return null;
+        return clientStubDao.quantityOfClientDevices();
     }
 
     @Override
