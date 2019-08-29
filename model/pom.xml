@@ -9,7 +9,7 @@
 
     <parent>
         <groupId>com.epam.brest.summer.courses2019</groupId>
-        <artifactId>repair-service</artifactId>
+        <artifactId>repair_service</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
